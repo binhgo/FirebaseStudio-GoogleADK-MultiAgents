@@ -1,5 +1,5 @@
-Firebase Studio
-Google ADK
-Multi Agents
+1. Firebase Studio
+2. Google ADK
+3. Multi Agents
 
-Simply testing Firebase Studio with Google ADK
+- Simply testing Firebase Studio with Google ADK
