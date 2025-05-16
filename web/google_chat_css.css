@@ -1,0 +1,159 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Telegram-like background */
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 900px; /* Optional: Limit chat width */
+    margin: 0 auto;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background-color: #E5DDD5; /* Ensure consistent background */
+    position: relative; /* Needed for absolute positioning of children */
+}
+
+.chat-header {
+    background-color: #a50b7f; /* Telegram header blue */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow-y: scroll; /* Enable scrolling */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Allow flex item to shrink */
+}
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+    max-width: 100%; /* Limit message bubble width */
+}
+
+.message.sent {
+    justify-content: flex-end;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    padding: 10px 15px;
+    border-radius: 18px; /* Rounded corners for bubbles */
+    position: relative;
+    max-width: 100%; /* Ensure bubble doesn't exceed parent width */
+    width: fit-content; /* Allow bubble to size based on content */
+}
+
+.message.sent .message-bubble {
+    background-color: #a50b7f; /* Telegram sent message green */
+    color: #FFF;
+}
+
+.message.received .message-bubble {
+    background-color: #FFF; /* Telegram received message white */
+    color: #000;
+}
+
+/* Optional: Tail for message bubbles */
+.message-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.message.sent .message-bubble::before {
+    right: -7px;
+    border-width: 0 0 10px 10px;
+    border-color: transparent transparent #a50b7f transparent;
+}
+
+.message.received .message-bubble::before {
+    left: -7px;
+    border-width: 0px 10px 10px 0px;
+    border-color: transparent transparent #FFF transparent;
+}
+
+/* Typing indicator styles */
+.typing-indicator {
+    position: absolute; /* Position absolutely within .chat-container */
+    bottom: 20px; /* Position from the bottom */
+    right:110px; /* Adjust as needed to align above the input field */
+    display: flex;
+}
+
+.typing-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+    background-color: #a50b7f; /* Blue color for dots */
+    border-radius: 50%;
+    animation: bounce 0.6s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #F0F0F0; /* Input area background */
+    align-items: center;
+}
+
+.chat-input input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    outline: none;
+    font-size: 1em;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    background-color: #a50b7f; /* Telegram button blue */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.chat-input button:hover {
+    background-color: #850a66; /* Darker blue on hover */
+}
